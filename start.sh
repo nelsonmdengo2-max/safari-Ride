@@ -12,4 +12,4 @@ echo "<VirtualHost *:${PORT}>
         Require all granted
     </Directory>
 </VirtualHost>" > /etc/apache2/sites-available/000-default.conf
-apachectl start
+exec apachectl -D FOREGROUND

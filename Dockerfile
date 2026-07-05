@@ -7,7 +7,7 @@ WORKDIR /var/www/html
 COPY . .
 RUN echo "DocumentRoot /var/www/html/public" > /etc/apache2/sites-available/000-default.conf
 ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts --ignore-platform-requirements
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 RUN chown -R www-data:www-data /var/www/html && chmod -R 775 /var/www/html/storage && chmod -R 775 /var/www/html/bootstrap/cache
 COPY start.sh /start.sh
 RUN chmod +x /start.sh

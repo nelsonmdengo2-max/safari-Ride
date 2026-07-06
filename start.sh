@@ -1,8 +1,8 @@
 #!/bin/bash
-a2dismod -f mpm_event 2>/dev/null
-a2enmod mpm_prefork rewrite 2>/dev/null
+rm -f /etc/apache2/mods-enabled/mpm_event.load /etc/apache2/mods-enabled/mpm_event.conf /etc/apache2/mods-enabled/mpm_prefork.load /etc/apache2/mods-enabled/mpm_prefork.conf
+a2enmod mpm_prefork rewrite
 mkdir -p /var/www/html/tagxi-super/public/push-configurations
-echo '{"type":"service_account","project_id":"dummy","private_key_id":"dummy","private_key":"dummy","client_email":"dummy","client_id":"dummy"}' > /var/www/html/tagxi-super/public/push-configurations/bidding_firebase.json
+echo '{"type":"service_account"}' > /var/www/html/tagxi-super/public/push-configurations/bidding_firebase.json
 if [ ! -f .env ]; then
   cp .env.save .env
 fi

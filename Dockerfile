@@ -2,7 +2,8 @@ FROM php:8.2-apache
 RUN apt-get update && apt-get install -y libpng-dev libjpeg62-turbo-dev libfreetype6-dev libzip-dev unzip curl libicu-dev libonig-dev libxml2-dev
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd zip pdo pdo_mysql mysqli bcmath mbstring xml intl opcache
-RUN a2dismod mpm_event && a2enmod mpm_prefork rewrite
+RUN a2dismod mpm_event
+RUN a2enmod mpm_prefork rewrite
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 COPY . .
